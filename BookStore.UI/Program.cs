@@ -24,4 +24,9 @@ app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+	name: "admin",
+	pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}",
+	defaults: new { area = "Admin" });
+
 app.Run();
