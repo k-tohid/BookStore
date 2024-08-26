@@ -1,5 +1,5 @@
 ﻿using BookStore.Core.Domain.IdentityEntities;
-using BookStore.Core.Interfaces;
+using BookStore.Core.Interfaces.Services;
 using BookStore.Core.Services;
 using BookStore.Infrastructure.DbContext;
 using BookStore.Infrastructure.Identity;
@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.UI.StartupExtentions
 {
-	public static class ConfigureServicesExtension
+    public static class ConfigureServicesExtension
 	{
 		public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
 		{

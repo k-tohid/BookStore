@@ -1,7 +1,7 @@
 ﻿using BookStore.Core.Domain.IdentityEntities;
 using BookStore.Core.DTO;
 using BookStore.Core.Enums;
-using BookStore.Core.Interfaces;
+using BookStore.Core.Interfaces.Services;
 using BookStore.Core.Services;
 using BookStore.UI.Filters.ActionFilters;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +11,7 @@ using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace BookStore.UI.Controllers
 {
-	public class AccountController : Controller
+    public class AccountController : Controller
 	{
 		private readonly IUserAccountService _userAccountService;
 		private readonly IUserRoleService _userRoleService;

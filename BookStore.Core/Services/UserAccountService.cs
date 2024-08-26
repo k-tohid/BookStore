@@ -1,7 +1,7 @@
 ﻿using BookStore.Core.Domain.IdentityEntities;
 using BookStore.Core.DTO;
 using BookStore.Core.Enums;
-using BookStore.Core.Interfaces;
+using BookStore.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Core.Services
 {
-	public class UserAccountService : IUserAccountService
+    public class UserAccountService : IUserAccountService
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly SignInManager<ApplicationUser> _signInManager;

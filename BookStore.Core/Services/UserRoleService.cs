@@ -1,6 +1,6 @@
 ﻿using BookStore.Core.Domain.IdentityEntities;
 using BookStore.Core.Enums;
-using BookStore.Core.Interfaces;
+using BookStore.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Core.Services
 {
-	public class UserRoleService : IUserRoleService
+    public class UserRoleService : IUserRoleService
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
 
