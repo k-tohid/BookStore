@@ -1,0 +1,53 @@
+﻿@model SignInDTO
+
+@{
+	ViewBag.Title = "Sign In";
+}
+
+<h1>Login</h1>
+
+<!-- Display general error messages -->
+@* @if (ViewData.ModelState.ContainsKey(string.Empty) && ViewData.ModelState[string.Empty]?.Errors?.Count > 0) *@
+
+@if (ViewData.ModelState.ContainsKey(string.Empty) && ViewData.ModelState[string.Empty]?.Errors?.Count > 0)
+{
+	<div class="alert alert-danger">
+		@foreach (var error in ViewData.ModelState[string.Empty].Errors)
+		{
+			<p>@error.ErrorMessage</p>
+		}
+	</div>
+}
+
+
+
+<form asp-controller="Account" asp-action="SignIn">
+	<div>
+		<label asp-for="UserName"></label>
+		<input asp-for="UserName" />
+		<span asp-validation-for="UserName"></span>
+	</div>
+
+	<div>
+		<label asp-for="Password"></label>
+		<input asp-for="Password" />
+		<span asp-validation-for="Password"></span>
+	</div>
+
+
+	<div>
+		<label asp-for="RememberMe"></label>
+		<input asp-for="RememberMe" type="checkbox" />
+		<span asp-validation-for="RememberMe"></span>
+	</div>
+	
+
+	<button type="submit">Sign In</button>
+</form>
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

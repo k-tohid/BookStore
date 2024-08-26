@@ -1,7 +1,9 @@
+using BookStore.UI.StartupExtentions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -18,6 +20,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

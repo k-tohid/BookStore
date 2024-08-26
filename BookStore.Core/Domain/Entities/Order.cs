@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace BookStore.Core.Domain.Entities
 
 		[Required]
 		[DataType(DataType.Currency)]
+		[Column(TypeName = "decimal(6,2)")]
 		public decimal TotalAmount { get; set; }
 
 		// Navigation Properties
