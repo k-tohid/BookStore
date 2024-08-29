@@ -1,0 +1,9 @@
+﻿@if (ViewData.ModelState.ContainsKey(string.Empty) && ViewData.ModelState[string.Empty]?.Errors?.Count > 0)
+{
+	<div class="alert alert-danger">
+		@foreach (var error in ViewData.ModelState[string.Empty].Errors)
+		{
+			<p>@error.ErrorMessage</p>
+		}
+	</div>
+}

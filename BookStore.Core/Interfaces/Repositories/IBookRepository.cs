@@ -9,7 +9,8 @@ namespace BookStore.Core.Interfaces.Repositories
 {
     public interface IBookRepository
     {
-        Task<Book?> GetBookByIdAsync(int id);
+		Task<int> SaveChangesAsync();
+		Task<Book?> GetBookByIdAsync(int id);
         Task<IEnumerable<Book>> GetAllBooksAsync();
         Task<IEnumerable<Book>> GetBooksByCategoryAsync(int categoryId);
         Task<bool> AddBookAsync(Book book);

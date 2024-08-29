@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+	public class CategoryRepository : ICategoryRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -21,26 +21,27 @@ namespace BookStore.Infrastructure.Repositories
 
         public async Task<bool> IsCategoryNameUniqueAsync(string categoryName)
         {
-            return await _db.Categories.AnyAsync(c => c.Name == categoryName);
+            return !await _db.Categories.AnyAsync(c => c.Name == categoryName);
         }
 
-        public async Task<bool> AddCategoryAsync(Category category)
+        public async Task CreateCategoryAsync(Category category)
         {
             await _db.Categories.AddAsync(category);
-            var result = await _db.SaveChangesAsync();
-
-            return result > 0;
         }
 
-        public async Task<bool> UpdateCategoryAsync(Category category)
+        public async Task UpdateCategoryAsync(Category category)
         {
-            _db.Categories.Update(category);
-            var result = await _db.SaveChangesAsync();
+			var existingCategory = await _db.Categories.FindAsync(category.Id);
+			if (existingCategory == null)
+			{
+				throw new InvalidOperationException("Category not found.");
+			}
 
-            return result > 0;
-        }
+			// Update the existing entity's properties with the new values
+			_db.Entry(existingCategory).CurrentValues.SetValues(category);
+		}
 
-        public async Task<bool> DeleteCategoryAsync(int id)
+        public async Task DeleteCategoryAsync(int id)
         {
             var category = await _db.Categories.FindAsync(id);
 
@@ -48,23 +49,19 @@ namespace BookStore.Infrastructure.Repositories
                 throw new ArgumentException("Category not found by that id.");
 
             _db.Categories.Remove(category);
-            var result = await _db.SaveChangesAsync();
-
-            return result > 0;
-
         }
 
-        public async Task<IEnumerable<Category>>? GetAllCategoriesAsync()
+        public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
         {
             return await _db.Categories.ToListAsync();
         }
 
-        public async Task<Category?> GetCategoryByIdAsync(int id)
+        public async Task<Category> GetCategoryByIdAsync(int id)
         {
             return await _db.Categories.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Category>>? SearchCategoryAsync(string categoryName)
+        public async Task<IEnumerable<Category>> SearchCategoryAsync(string categoryName)
         {
             if (string.IsNullOrWhiteSpace(categoryName))
             {
@@ -76,5 +73,9 @@ namespace BookStore.Infrastructure.Repositories
             return categories;
         }
 
-    }
+		public async Task<int> SaveChangesAsync()
+		{
+            return await _db.SaveChangesAsync();
+		}
+	}
 }

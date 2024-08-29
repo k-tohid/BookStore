@@ -1,8 +1,10 @@
 ﻿using BookStore.Core.Domain.IdentityEntities;
+using BookStore.Core.Interfaces.Repositories;
 using BookStore.Core.Interfaces.Services;
 using BookStore.Core.Services;
 using BookStore.Infrastructure.DbContext;
 using BookStore.Infrastructure.Identity;
+using BookStore.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,9 @@ namespace BookStore.UI.StartupExtentions
 			// add Services into IoC Container
 			services.AddScoped<IUserAccountService, UserAccountService>();
 			services.AddScoped<IUserRoleService, UserRoleService>();
+
+			services.AddScoped<ICategoryRepository, CategoryRepository>();
+			services.AddScoped<ICategoryService, CategoryService>();
 
 
 			services.AddDbContext<ApplicationDbContext>(options =>

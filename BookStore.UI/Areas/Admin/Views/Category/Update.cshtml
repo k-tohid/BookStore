@@ -1,0 +1,26 @@
+﻿@model UpdateCategoryDTO
+
+@{
+	ViewBag.Title = "Update Category";
+}
+
+<partial name="_ModelStateEmptyKeyErrors"></partial>
+
+<form asp-area="Admin" asp-controller="Category" asp-action="Update" method="post">
+
+	<input asp-for="Id" hidden />
+
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" />
+		<span asp-validation-for="Name"></span>
+	</div>
+
+	<div>
+		<label asp-for="Description"></label>
+		<input asp-for="Description" />
+		<span asp-validation-for="Description"></span>
+	</div>
+
+	<button type="submit">Update Category</button>
+</form>

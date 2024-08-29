@@ -15,14 +15,14 @@ namespace BookStore.Core.Domain.Entities
 
 		[Required]
 		[StringLength(255)]
-		public string Title { get; set; }
+		public required string Title { get; set; }
 
 		[Required]
 		[StringLength(255)]
-		public string Author { get; set; }
+		public required string Author { get; set; }
 
 		[StringLength(1000)]
-		public string Description { get; set; }
+		public string? Summary { get; set; }
 
 		[StringLength(255)]
 		public string? ImageUrl { get; set; }
@@ -36,10 +36,9 @@ namespace BookStore.Core.Domain.Entities
 
 
 
-		[Required]
-		public int CategoryId { get; set; }
+		public int? CategoryId { get; set; }
 
 		// Navigation Property
-		public Category Category { get; set; }
+		public Category? Category { get; set; }
 	}
 }

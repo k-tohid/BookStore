@@ -1,0 +1,27 @@
+﻿@model ReadCategoryDTO
+
+@{
+	ViewBag.Title = "Delete Category";
+}
+
+
+<h1>Delete Category</h1>
+
+<partial name="_ModelStateEmptyKeyErrors"></partial>
+
+<form asp-area="Admin" asp-controller="Category" asp-action="ConfirmDelete" method="post">
+
+	<input asp-for="Id" type="hidden"/>
+
+	<div>
+		<label asp-for="Name"></label>
+		<input asp-for="Name" disabled />
+	</div>
+
+	<div>
+		<label asp-for="Description"></label>
+		<input asp-for="Description" disabled/>
+	</div>
+
+	<button type="submit">Delete Category</button>
+</form>
