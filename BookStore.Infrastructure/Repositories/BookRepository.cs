@@ -22,23 +22,22 @@ namespace BookStore.Infrastructure.Repositories
             _logger = logger;
         }
 
-        public async Task<Book?> GetBookByIdAsync(int id)
+		public async Task<int> SaveChangesAsync()
+		{
+			return await _db.SaveChangesAsync();
+		}
+
+		public async Task<Book?> GetBookByIdAsync(int id)
         {
             return await _db.Books.FindAsync(id);
         }
 
-        public async Task<bool> AddBookAsync(Book book)
+        public async Task CreateBookAsync(Book book)
         {
-            if (book == null)
-                throw new ArgumentNullException(nameof(book));
-
             await _db.Books.AddAsync(book);
-            var result = await _db.SaveChangesAsync();
-
-            return result > 0;
         }
 
-        public async Task<bool> DeleteBookAsync(int id)
+        public async Task DeleteBookAsync(int id)
         {
             var book = await _db.Books.FindAsync(id);
 
@@ -46,22 +45,23 @@ namespace BookStore.Infrastructure.Repositories
                 throw new ArgumentException("Book not found by that id.");
 
             _db.Books.Remove(book);
-            var result = await _db.SaveChangesAsync();
-
-            return result > 0;
         }
 
-        public async Task<IEnumerable<Book>> GetAllBooksAsync()
+		public async Task UpdateBookAsync(Book book)
+		{
+			var exsistingBook = await _db.Categories.FindAsync(book.Id);
+			if (exsistingBook == null)
+			{
+				throw new InvalidOperationException("Category not found.");
+			}
+
+			// Update the existing entity's properties with the new values
+			_db.Entry(exsistingBook).CurrentValues.SetValues(book);
+		}
+
+		public async Task<IEnumerable<Book>> GetAllBooksAsync()
         {
             return await _db.Books.Include("Category").ToListAsync();
-        }
-
-        public async Task<bool> UpdateBookAsync(Book book)
-        {
-            _db.Books.Update(book);
-            var result = await _db.SaveChangesAsync();
-
-            return result > 0;
         }
 
         public Task<IEnumerable<Book>> GetBooksByCategoryAsync(int categoryId)
@@ -74,6 +74,9 @@ namespace BookStore.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        
-    }
+		public async Task<bool> IsBookTitleUniqueAsync(string bookTitle)
+		{
+			return !await _db.Books.AnyAsync(c => c.Title == bookTitle);
+		}
+	}
 }

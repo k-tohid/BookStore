@@ -56,7 +56,7 @@ namespace BookStore.Infrastructure.Repositories
             return await _db.Categories.ToListAsync();
         }
 
-        public async Task<Category> GetCategoryByIdAsync(int id)
+        public async Task<Category?> GetCategoryByIdAsync(int id)
         {
             return await _db.Categories.FindAsync(id);
         }

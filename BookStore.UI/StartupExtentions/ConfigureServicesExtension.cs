@@ -5,6 +5,7 @@ using BookStore.Core.Services;
 using BookStore.Infrastructure.DbContext;
 using BookStore.Infrastructure.Identity;
 using BookStore.Infrastructure.Repositories;
+using BookStore.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,11 @@ namespace BookStore.UI.StartupExtentions
 
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<ICategoryService, CategoryService>();
+
+			services.AddScoped<IBookRepository, BookRepository>();
+			services.AddScoped<IBookService, BookService>();
+
+			services.AddTransient<IBookImageService, BookImageService>();
 
 
 			services.AddDbContext<ApplicationDbContext>(options =>

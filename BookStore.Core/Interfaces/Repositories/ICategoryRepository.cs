@@ -10,7 +10,7 @@ namespace BookStore.Core.Interfaces.Repositories
     public interface ICategoryRepository
     {
         Task<int> SaveChangesAsync();
-        Task<Category> GetCategoryByIdAsync(int id);
+        Task<Category?> GetCategoryByIdAsync(int id);
         Task<IEnumerable<Category>> GetAllCategoriesAsync();
         Task<bool> IsCategoryNameUniqueAsync(string categoryName);
         Task CreateCategoryAsync(Category category);
