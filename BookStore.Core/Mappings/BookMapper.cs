@@ -32,5 +32,44 @@ namespace BookStore.Core.Mappings
         {
             return books.Select(book => ToReadBookDTO(book));
         }
+
+
+        public static UpdateBookDTO ToUpdateBookDTO(this ReadBookDTO book)
+        {
+            if (book == null)
+                throw new ArgumentNullException(nameof(book));
+
+            return new UpdateBookDTO
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                Summary = book.Summary,
+                Price = book.Price,
+                Stock = book.Stock,
+                ImageUrl = book.ImageUrl,
+                CategoryId = book.CategoryId,
+            };
+        }
+
+
+        public static Book ToBook(this UpdateBookDTO book)
+        {
+            if (book == null)
+                throw new ArgumentNullException(nameof(book));
+
+            return new Book
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                Summary = book.Summary,
+                Price = book.Price,
+                Stock = book.Stock,
+                ImageUrl = book.ImageUrl,
+                CategoryId = book.CategoryId,
+            };
+        }
+
     }
 }

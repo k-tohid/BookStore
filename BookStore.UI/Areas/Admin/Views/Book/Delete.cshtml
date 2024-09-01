@@ -1,0 +1,55 @@
+﻿@model ReadBookDTO
+
+@{
+    ViewBag.Title = "Update Book";
+}
+
+<form asp-area="Admin" asp-controller="Book" asp-action="ConfirmDelete" method="post" enctype="multipart/form-data">
+    <input asp-for="Id" hidden />
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" disabled/>
+        <span asp-validation-for="Title"></span>
+    </div>
+
+    <div>
+        <label asp-for="Author"></label>
+        <input asp-for="Author" disabled />
+        <span asp-validation-for="Author"></span>
+    </div>
+
+    <div>
+        <label asp-for="Summary"></label>
+        <textarea asp-for="Summary" disabled></textarea>
+        <span asp-validation-for="Summary"></span>
+    </div>
+
+    <div>
+        <label asp-for="Price"></label>
+        <input asp-for="Price" disabled  />
+        <span asp-validation-for="Price"></span>
+    </div>
+
+    <div>
+        <label asp-for="Stock"></label>
+        <input asp-for="Stock" disabled  />
+        <span asp-validation-for="Stock"></span>
+    </div>
+
+    <div>
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" disabled>
+        </select>
+        <span asp-validation-for="CategoryId"></span>
+    </div>
+    <input asp-for="ImageUrl" hidden />
+
+    <div>
+        <h3>Image</h3>
+        <img src="/images/books/@Model.ImageUrl" />
+    </div>
+
+
+
+    <button type="submit">Deletes Book</button>
+</form>

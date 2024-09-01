@@ -20,7 +20,6 @@ namespace BookStore.Infrastructure.Services
             }
             else
             {
-                // Log that the file was not found
                 return false;
             }
         }

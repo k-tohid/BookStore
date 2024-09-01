@@ -49,19 +49,27 @@ namespace BookStore.Infrastructure.Repositories
 
 		public async Task UpdateBookAsync(Book book)
 		{
-			var exsistingBook = await _db.Categories.FindAsync(book.Id);
-			if (exsistingBook == null)
+			var existingBook = await _db.Books.FindAsync(book.Id);
+			if (existingBook == null)
 			{
-				throw new InvalidOperationException("Category not found.");
+				throw new InvalidOperationException("Book not found.");
 			}
 
-			// Update the existing entity's properties with the new values
-			_db.Entry(exsistingBook).CurrentValues.SetValues(book);
-		}
+            // Update the existing entity's properties with the new values
+            _db.Entry(existingBook).CurrentValues.SetValues(book);
+            // Update the existing book's properties
+
+            //_db.Update(book);
+        }
 
 		public async Task<IEnumerable<Book>> GetAllBooksAsync()
         {
             return await _db.Books.Include("Category").ToListAsync();
+        }
+
+        public async Task<bool> IsBookTitleUniqueAsync(string bookTitle)
+        {
+            return !await _db.Books.AnyAsync(c => c.Title == bookTitle);
         }
 
         public Task<IEnumerable<Book>> GetBooksByCategoryAsync(int categoryId)
@@ -74,9 +82,6 @@ namespace BookStore.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-		public async Task<bool> IsBookTitleUniqueAsync(string bookTitle)
-		{
-			return !await _db.Books.AnyAsync(c => c.Title == bookTitle);
-		}
+		
 	}
 }

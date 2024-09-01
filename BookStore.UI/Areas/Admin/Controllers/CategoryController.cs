@@ -120,7 +120,13 @@ namespace BookStore.UI.Areas.Admin.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Update(int id)
 		{
-			var category = await _categoryService.GetCategoryByIdAsync(id);
+            if (id < 1)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Category id.");
+                return View();
+            }
+
+            var category = await _categoryService.GetCategoryByIdAsync(id);
 
 			if (category == null)
 			{
