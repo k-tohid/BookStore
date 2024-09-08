@@ -15,6 +15,12 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -22,6 +28,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
+
 
 app.MapControllerRoute(
 	name: "default",
@@ -32,9 +41,6 @@ app.MapControllerRoute(
 	name: "admin",
 	pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}",
 	defaults: new { area = "Admin" });
-
-
-
 
 
 app.Run();

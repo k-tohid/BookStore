@@ -6,47 +6,47 @@
 
 <form asp-area="Admin" asp-controller="Book" asp-action="Create" method="post" enctype="multipart/form-data">
     <div>
-        <label asp-for="Title"></label>
-        <input asp-for="Title" />
-        <span asp-validation-for="Title"></span>
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" ></span>
     </div>
 
     <div>
-        <label asp-for="Author"></label>
-        <input asp-for="Author" />
+        <label asp-for="Author" class="form-label"></label>
+        <input asp-for="Author" class="form-control" />
         <span asp-validation-for="Author"></span>
     </div>
 
     <div>
-        <label asp-for="Summary"></label>
-        <textarea asp-for="Summary"></textarea>
+        <label asp-for="Summary" class="form-label"></label>
+        <textarea asp-for="Summary" class="form-control"></textarea>
         <span asp-validation-for="Summary"></span>
     </div>
 
     <div>
-        <label asp-for="Price"></label>
-        <input asp-for="Price" />
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" />
         <span asp-validation-for="Price"></span>
     </div>
 
     <div>
-        <label asp-for="Stock"></label>
-        <input asp-for="Stock" />
+        <label asp-for="Stock" class="form-label"></label>
+        <input asp-for="Stock" class="form-control" />
         <span asp-validation-for="Stock"></span>
     </div>
 
     <div>
-        <label asp-for="CategoryId">Category</label>
-        <select asp-for="CategoryId" asp-items="@ViewBag.Categories"></select>
+        <label asp-for="CategoryId" class="form-label">Category</label>
+        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-select"></select>
         <span asp-validation-for="CategoryId"></span>
     </div>
 
     <div>
-        <label asp-for="ImageFile">Upload Image</label>
+        <label asp-for="ImageFile" class="form-label">Upload Image</label>
         <input asp-for="ImageFile" type="file" />
     </div>
 
     <div asp-validation-summary="All"></div>
 
-    <button type="submit">Create Book</button>
+    <button type="submit" class="btn btn-primary">Create Book</button>
 </form>

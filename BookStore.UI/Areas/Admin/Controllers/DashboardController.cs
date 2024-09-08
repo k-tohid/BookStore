@@ -7,6 +7,7 @@ namespace BookStore.UI.Areas.Admin.Controllers
 	{
 		[Route("/Admin/")]
 		[Route("/Admin/Dashboard")]
+		[HttpGet]
 		public IActionResult Index()
 		{
 			return View();

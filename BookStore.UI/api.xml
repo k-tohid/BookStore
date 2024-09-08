@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookStore.UI</name>
+    </assembly>
+    <members>
+        <member name="M:BookStore.UI.Api.Controllers.v1.BooksController.GetAllBooks">
+            <summary>
+            You can get all the books
+            </summary>
+            <returns>returns a list of books</returns>
+        </member>
+        <member name="M:BookStore.UI.Api.Controllers.v2.BooksController.GetAllBooks">
+            <summary>
+            You can get all the books
+            </summary>
+            <returns>returns a list of books</returns>
+        </member>
+    </members>
+</doc>
