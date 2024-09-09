@@ -9,9 +9,7 @@ using BookStore.Infrastructure.Repositories;
 using BookStore.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace BookStore.UI.StartupExtentions
 {

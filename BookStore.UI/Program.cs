@@ -1,9 +1,14 @@
 using BookStore.UI.StartupExtentions;
+//using BookStore.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
 
+
+//builder.Services.ConfigureServices(builder.Configuration);
 builder.Services.ConfigureServices(builder.Configuration);
+
 
 var app = builder.Build();
 
@@ -15,11 +20,6 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

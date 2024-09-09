@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BookStore.UI</name>
+        <name>BookStore.WebAPI</name>
     </assembly>
     <members>
     </members>
